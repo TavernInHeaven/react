@@ -1,8 +1,8 @@
 // import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react'; //imrs
 import Header from './components/Header';
 import Tasks from './components/Tasks';
-import { useState } from 'react'; //imrs
+import AddTask from './components/AddTask';
 
 const App = () => {
   const [tasks, setTasks] = useState([
@@ -26,6 +26,10 @@ const App = () => {
     },
   ]);
 
+  const addTask = (task) => {
+    console.log(task);
+  };
+
   const deleteTask = (id) => {
     setTasks(tasks.filter((t) => t.id !== id));
   };
@@ -39,6 +43,7 @@ const App = () => {
   return (
     <div className="container">
       <Header />
+      <AddTask onAdd={addTask} />
       <Tasks tasks={tasks} onDelete={deleteTask} onReminder={toggleReminder} />
     </div>
   );
