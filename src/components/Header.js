@@ -1,16 +1,16 @@
 import PropTypes from 'prop-types'; //impt
 import Button from './Button';
 
-const Header = ({ title }) => {
+const Header = ({ title, onAdd, showAdd }) => {
   //rafce arrow function/rcc/rce
-  const onButtonClick = () => {
-    console.log('Clicked+1');
-  };
-
   return (
     <header className="header">
       <h2>{title}</h2>
-      <Button color="yellowgreen" onClick={onButtonClick} />
+      <Button
+        color={showAdd ? 'yellowgreen' : 'green'}
+        onClick={onAdd}
+        text={showAdd ? 'Close' : 'Add'}
+      />
     </header>
   );
 };

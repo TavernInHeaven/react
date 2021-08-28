@@ -9,7 +9,7 @@ const Task = ({ task, onDelete, onReminder }) => {
       <h3>
         {task.text.toUpperCase()}{' '}
         <FaTimes
-          style={{ color: 'red', cursor: 'pointer' }}
+          style={{ color: 'darkgreen', cursor: 'pointer' }}
           onClick={() => onDelete(task.id)}
         />
       </h3>
