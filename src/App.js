@@ -1,8 +1,10 @@
-// import logo from './logo.svg';
-import { useState, useEffect } from 'react'; //imrs
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React, { useState, useEffect } from 'react'; //imrs
 import Header from './components/Header';
+import Footer from './components/Footer';
 import Tasks from './components/Tasks';
 import AddTask from './components/AddTask';
+import About from './components/About';
 
 const App = () => {
   const [showAddTask, setShowAddTask] = useState(false);
@@ -73,14 +75,30 @@ const App = () => {
   };
 
   return (
-    <div className="container">
-      <Header
-        onAdd={() => setShowAddTask(!showAddTask)}
-        showAdd={showAddTask}
-      />
-      {showAddTask && <AddTask onAdd={addTask} />}
-      <Tasks tasks={tasks} onDelete={deleteTask} onReminder={toggleReminder} />
-    </div>
+    <Router>
+      <div className="container">
+        <Header
+          onAdd={() => setShowAddTask(!showAddTask)}
+          showAdd={showAddTask}
+        />
+        {showAddTask && <AddTask onAdd={addTask} />}
+        <Route
+          path="/"
+          exact
+          render={(props) => (
+            <React.Fragment>
+              <Tasks
+                tasks={tasks}
+                onDelete={deleteTask}
+                onReminder={toggleReminder}
+              />
+            </React.Fragment>
+          )}
+        />
+        <Route path="/about" component={About} />
+        <Footer />
+      </div>
+    </Router>
   );
 };
 
